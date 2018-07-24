@@ -3801,7 +3801,7 @@ int kdCISModulePowerOn(CAMERA_DUAL_CAMERA_SENSOR_ENUM SensorIdx, char *currSenso
 	return 0;
 
 
-_kdCISModulePowerOn_exit_:
+/*_kdCISModulePowerOn_exit_:*/
 	return -EIO;
 
 }

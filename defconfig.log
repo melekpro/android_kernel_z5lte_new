@@ -1,0 +1,16 @@
+make[1]: Entering directory '/home/theyuvrajsaxena/Desktop/kernel/android_kernel_z5lte_new/out'
+  HOSTCC  scripts/basic/fixdep
+  GEN     ./Makefile
+  HOSTCC  scripts/kconfig/conf.o
+  SHIPPED scripts/kconfig/zconf.tab.c
+  SHIPPED scripts/kconfig/zconf.lex.c
+  SHIPPED scripts/kconfig/zconf.hash.c
+  HOSTCC  scripts/kconfig/zconf.tab.o
+  HOSTLD  scripts/kconfig/conf
+warning: (ARCH_REQUIRE_GPIOLIB && PINCTRL_AT91 && PINCTRL_MTK_COMMON && PINCTRL_NOMADIK && MFD_TC6393XB && FB_VIA) selects GPIOLIB which has unmet direct dependencies (ARCH_WANT_OPTIONAL_GPIOLIB || ARCH_REQUIRE_GPIOLIB)
+warning: (ARCH_REQUIRE_GPIOLIB && PINCTRL_AT91 && PINCTRL_MTK_COMMON && PINCTRL_NOMADIK && MFD_TC6393XB && FB_VIA) selects GPIOLIB which has unmet direct dependencies (ARCH_WANT_OPTIONAL_GPIOLIB || ARCH_REQUIRE_GPIOLIB)
+drivers/misc/mediatek/magnetometer/Kconfig:22:warning: multi-line strings not supported
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/home/theyuvrajsaxena/Desktop/kernel/android_kernel_z5lte_new/out'

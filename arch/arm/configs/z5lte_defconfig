@@ -473,7 +473,7 @@ CONFIG_WTK_GT5668_X6068=y
 
 
 # CAMERA:-------------------------------------------------------
-CONFIG_CUSTOM_KERNEL_IMGSENSOR="s5k4h8_mipi_raw sp2509_mipi_raw c2590_mipi_raw hi843b_mipi_raw gc5005_mipi_raw sp5506_mipi_raw s5k3l8_mipi_raw"
+# CONFIG_CUSTOM_KERNEL_IMGSENSOR="s5k4h8_mipi_raw"
 
 # AF_LENS:-------------------------------------------------------
 CONFIG_MTK_LENS_DUMMYLENS_SUPPORT=y
