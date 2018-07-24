@@ -1,0 +1,16 @@
+
+obj-$(CONFIG_WTK_FINGERPRINT_SLSPI) += slspi/
+
+obj-$(CONFIG_WTK_FINGERPRINT_GF510) += gf510/
+
+obj-$(CONFIG_WTK_FINGERPRINT_GF66XX) += gf66xx/
+
+obj-$(CONFIG_WTK_FINGERPRINT_GFX1XM) += gfx1xm/
+
+obj-$(CONFIG_WTK_FINGERPRINT_GFX368) += gfx368/
+
+obj-$(CONFIG_WTK_FINGERPRINT_A121N) += A121N/
+
+obj-$(CONFIG_WTK_FINGERPRINT_EFSA96S) += elan_fp/
+obj-y += fingerprint_spi.o
+
