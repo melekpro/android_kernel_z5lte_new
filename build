@@ -25,9 +25,12 @@ source ~/.yuvraj.conf
 
 # Common Declarations
 
-declare -a BNAME="YUVRAJ SAXENA"
-declare -a BNICK="imyuvraj"
+declare -a BUILDER_NAME="YUVRAJ SAXENA"
+declare -a BUILDER_NICKNAME="imyuvraj"
 declare -a COMPILED_KERNEL="out/arch/arm/boot/zImage-dtb"
+declare -a BUILDER_TG_NAME="imyuvraj"
+declare -a TESTER_TG_NAME="melekpro"
+declare -a REPO_NAME=$(basename `git rev-parse --show-toplevel`)
 declare -f TGFILE
 declare -f TGECHO
 
@@ -108,7 +111,7 @@ clear
 }
 
 function INFO() {
-        echo "${BLD}${CYN} MADE BY ${BNAME} (AKA: ${BNICK}) ${RST}"
+        echo "${BLD}${CYN} MADE BY ${BUILDER_NAME} (AKA: ${BUILDER_NICKNAME}) ${RST}"
 }
 
 function TOOLCHAIN() {
@@ -133,14 +136,14 @@ function BUILD() {
 clear
 	export KBUILD_BUILD_USER=Yuvraj
         export KBUILD_BUILD_HOST=∆Thestral
-        export KNM=snowy
+        export KERNEL_NAME=snowy
         mkdir -p out
         echo "${PURP} READING DEFCONFIG..."
         make z5lte_defconfig O=out/ &>> defconfig.log
 clear
         echo "${YLW} BUILDING KERNEL..."
         make -j4 O=out/ &>> Kernel.log
-	declare -i COMPILED_DATE=$(date +"%Y-%m-%d-%H:%M:%S")
+	declare -a COMPILED_DATE=$(date +"%Y-%m-%d-%H:%M:%S")
 }
 
 function CHECK() {
@@ -156,7 +159,7 @@ clear
 if [[ ${BUILDING_ON_CI} = 'y' ]]; then
         TRANSFER Kernel.log
 else
-	TGFILE Kernel.log "Check Logs @imyuvraj build failed"
+	TGFILE Kernel.log "Check Logs @${BUILDER_TG_NAME} build failed"
 fi
 else
         echo "${GRN} #####################################"
@@ -167,13 +170,13 @@ else
         echo "${GRN} #####################################"
         echo "${ORNG} #  uploading Kernel                #"
         echo "${ORNG} #####################################"
-        cp ${COMPILED_KERNEL} Kernel_${COMPILED_DATE}-${KNM}
-	zip -r Kernel_${COMPILED_DATE}-${KNM}.zip Kernel_${COMPILED_DATE}-${KNM}
+        cp ${COMPILED_KERNEL} Kernel_${COMPILED_DATE}-${KERNEL_NAME}
+	zip -r Kernel_${COMPILED_DATE}-${KERNEL_NAME}.zip Kernel_${COMPILED_DATE}-${KERNEL_NAME}
 clear
 if [[ ${BUILDING_ON_CI} = 'y' ]]; then
-        TRANSFER Kernel_${COMPILED_DATE}-${KNM}.zip
+        TRANSFER Kernel_${COMPILED_DATE}-${KERNEL_NAME}.zip
 else
-	TGFILE Kernel_${COMPILED_DATE}-${KNM}.zip "Build completed @imyuvraj"
+	TGFILE Kernel_${COMPILED_DATE}-${KERNEL_NAME}.zip "Build Completed @${BUILDER_TG_NAME} For ${REPO_NAME} Repo, Test @${TESTER_TG_NAME}"
 fi
 fi
 }
