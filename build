@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #
 # Copyright (C) 2018 Yuvraj Saxena (imyuvraj)
@@ -7,6 +7,7 @@
 # Script to compile kernel
 
 # Colors
+
 ORNG=$'\033[0;33m'
 CYN=$'\033[0;36m'
 PURP=$'\033[0;35m'
@@ -17,6 +18,20 @@ GRN=$'\033[01;32m'
 RED=$'\033[01;31m'
 RST=$'\033[0m'
 YLW=$'\033[01;33m'
+
+# Get Credentials
+
+source ~/.yuvraj.conf
+
+# Common Declarations
+
+declare -a BNAME="YUVRAJ SAXENA"
+declare -a BNICK="imyuvraj"
+declare -a COMPILED_KERNEL="out/arch/arm/boot/zImage-dtb"
+declare -f TGFILE
+declare -f TGECHO
+
+# Start Script
 
 function START_SCRIPT() {
 if [[ ${BUILDING_ON_CI} = 'y' ]]; then
@@ -93,8 +108,6 @@ clear
 }
 
 function INFO() {
-        BNAME="YUVRAJ SAXENA"
-        BNICK="imyuvraj"
         echo "${BLD}${CYN} MADE BY ${BNAME} (AKA: ${BNICK}) ${RST}"
 }
 
@@ -118,7 +131,6 @@ fi
 
 function BUILD() {
 clear
-        COMPILED_KERNEL="out/arch/arm/boot/zImage-dtb"
 	export KBUILD_BUILD_USER=Yuvraj
         export KBUILD_BUILD_HOST=∆Thestral
         export KNM=snowy
@@ -128,7 +140,7 @@ clear
 clear
         echo "${YLW} BUILDING KERNEL..."
         make -j4 O=out/ &>> Kernel.log
-	COMPILED_DATE=$(date +"%Y-%m-%d-%H:%M:%S")
+	declare -i COMPILED_DATE=$(date +"%Y-%m-%d-%H:%M:%S")
 }
 
 function CHECK() {
@@ -141,7 +153,11 @@ then
         echo "${CYN}#       Uploading Logs     #"
         echo "${RED}############################"
 clear
+if [[ ${BUILDING_ON_CI} = 'y' ]]; then
         TRANSFER Kernel.log
+else
+	TGFILE Kernel.log "Check Logs @imyuvraj build failed"
+fi
 else
         echo "${GRN} #####################################"
         echo "${GRN} #                                   #"
@@ -154,7 +170,11 @@ else
         cp ${COMPILED_KERNEL} Kernel_${COMPILED_DATE}-${KNM}
 	zip -r Kernel_${COMPILED_DATE}-${KNM}.zip Kernel_${COMPILED_DATE}-${KNM}
 clear
+if [[ ${BUILDING_ON_CI} = 'y' ]]; then
         TRANSFER Kernel_${COMPILED_DATE}-${KNM}.zip
+else
+	TGFILE Kernel_${COMPILED_DATE}-${KNM}.zip "Build completed @imyuvraj"
+fi
 fi
 }
 
