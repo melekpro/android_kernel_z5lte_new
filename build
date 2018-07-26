@@ -30,9 +30,10 @@ declare -a BUILDER_NICKNAME="imyuvraj"
 declare -a COMPILED_KERNEL="out/arch/arm/boot/zImage-dtb"
 declare -a BUILDER_TG_NAME="imyuvraj"
 declare -a TESTER_TG_NAME="melekpro"
-declare -a REPO_NAME=$(basename `git rev-parse --show-toplevel`)
+declare -a DEVICE_NAME="Leagoo-Z5LTE"
 declare -f TGFILE
 declare -f TGECHO
+REPO_NAME="$(basename `git rev-parse --show-toplevel`)"
 
 # Start Script
 
@@ -92,7 +93,7 @@ fi
 function BANNER() {
 clear
         INFO
-        echo "${BLD}${BLINK_RED}
+        echo "${BLINK_RED}
 
 ▓██   ██▓ █    ██  ██▒   █▓ ██▀███   ▄▄▄      ▄▄▄██▀▀▀
  ▒██  ██▒ ██  ▓██▒▓██░   █▒▓██ ▒ ██▒▒████▄      ▒██   
@@ -142,8 +143,8 @@ clear
         make z5lte_defconfig O=out/ &>> defconfig.log
 clear
         echo "${YLW} BUILDING KERNEL..."
-        make -j4 O=out/ &>> Kernel.log
-	declare -a COMPILED_DATE=$(date +"%Y-%m-%d-%H:%M:%S")
+        make -j6 O=out/ &>> Kernel.log
+	COMPILED_DATE=$(date +"%Y-%m-%d-%H:%M:%S")
 }
 
 function CHECK() {
@@ -170,13 +171,14 @@ else
         echo "${GRN} #####################################"
         echo "${ORNG} #  uploading Kernel                #"
         echo "${ORNG} #####################################"
-        cp ${COMPILED_KERNEL} Kernel_${COMPILED_DATE}-${KERNEL_NAME}
-	zip -r Kernel_${COMPILED_DATE}-${KERNEL_NAME}.zip Kernel_${COMPILED_DATE}-${KERNEL_NAME}
+        cp ${COMPILED_KERNEL} Kernel_${COMPILED_DATE}-${KERNEL_NAME}-${DEVICE_NAME}
+	zip -r Kernel_${COMPILED_DATE}-${KERNEL_NAME}-${DEVICE_NAME}.zip Kernel_${COMPILED_DATE}-${KERNEL_NAME}-${DEVICE_NAME}
 clear
 if [[ ${BUILDING_ON_CI} = 'y' ]]; then
-        TRANSFER Kernel_${COMPILED_DATE}-${KERNEL_NAME}.zip
+        TRANSFER Kernel_${COMPILED_DATE}-${KERNEL_NAME}-${DEVICE_NAME}.zip
 else
-	TGFILE Kernel_${COMPILED_DATE}-${KERNEL_NAME}.zip "Build Completed @${BUILDER_TG_NAME} For ${REPO_NAME} Repo, Test @${TESTER_TG_NAME}"
+	TGFILE Kernel_${COMPILED_DATE}-${KERNEL_NAME}-${DEVICE_NAME}.zip "Build Completed @${BUILDER_TG_NAME}"
+        TGECHO "GitHub Repo: ${REPO_NAME}, Test @${TESTER_TG_NAME}"
 fi
 fi
 }
