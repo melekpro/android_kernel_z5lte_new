@@ -469,7 +469,7 @@ CONFIG_LCM_HEIGHT="854"
 CONFIG_LCM_WIDTH="480"
 
 # TP:-------------------------------------------------------
-CONFIG_WTK_GT5668_X6068=y
+CONFIG_TOUCHSCREEN_MTK_FT5X0X=y
 
 
 # CAMERA:-------------------------------------------------------
