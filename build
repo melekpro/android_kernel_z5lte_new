@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #
-# Copyright (C) 2018 Yuvraj Saxena (imyuvraj)
+# Copyright (C) 2018 Yuvraj Saxena (rad0n)
 #
 
 # Script to compile kernel
@@ -26,9 +26,9 @@ source ~/.yuvraj.conf
 # Common Declarations
 
 declare -a BUILDER_NAME="YUVRAJ SAXENA"
-declare -a BUILDER_NICKNAME="imyuvraj"
+declare -a BUILDER_NICKNAME="rad0n"
 declare -a COMPILED_KERNEL="out/arch/arm/boot/zImage-dtb"
-declare -a BUILDER_TG_NAME="imyuvraj"
+declare -a BUILDER_TG_NAME="rad0n"
 declare -a TESTER_TG_NAME="melekpro"
 declare -a DEVICE_NAME="Leagoo-Z5LTE"
 declare -f TGFILE
@@ -126,7 +126,7 @@ clear
         echo "${YLW}####################################"
         echo "${GRN}#       CLONING TOOLCHAIN          #"
         echo "####################################"
-        git clone -q https://github.com/imyuvraj/linaro-5.5.0.git linaro
+        git clone -q https://github.com/rad0n/linaro-5.5.0.git linaro
         export ARCH=arm CROSS_COMPILE=$PWD/linaro/bin/arm-linux-gnueabi-
 else
         export ARCH=arm CROSS_COMPILE=$PWD/linaro/bin/arm-linux-gnueabi-
