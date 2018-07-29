@@ -470,7 +470,7 @@ CONFIG_LCM_WIDTH="480"
 
 # TP:-------------------------------------------------------
 CONFIG_TOUCHSCREEN_MTK_FT5X0X=y
-
+CONFIG_HCT_TP_GESTRUE=y
 
 # CAMERA:-------------------------------------------------------
 # CONFIG_CUSTOM_KERNEL_IMGSENSOR="s5k4h8_mipi_raw"

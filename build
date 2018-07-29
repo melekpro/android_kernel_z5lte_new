@@ -139,6 +139,7 @@ clear
         export KBUILD_BUILD_HOST=∆Thestral
         export KERNEL_NAME=snowy
         mkdir -p out
+        rm *log
         echo "${PURP} READING DEFCONFIG..."
         make z5lte_defconfig O=out/ &>> defconfig.log
 clear
