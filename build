@@ -33,7 +33,7 @@ declare -a TESTER_TG_NAME="melekpro"
 declare -a DEVICE_NAME="Leagoo-Z5LTE"
 declare -f TGFILE
 declare -f TGECHO
-REPO_NAME="$(basename `git rev-parse --show-toplevel`)"
+REPO_NAME="$(basename -s .git `git config --get remote.origin.url`)"
 
 # Start Script
 
