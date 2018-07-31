@@ -21,4 +21,4 @@ script:
   - travis_wait 15 ./build -b
 
 after_success:
-  - curl --upload-file *snowy*.zip https://trnasfer.sh
+  - curl --upload-file *snowy*.zip https://transfer.sh
