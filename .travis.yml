@@ -18,4 +18,4 @@ before_install:
 
 script:  
   - export BUILDING_ON_CI=y
-  - ./build -b
+  - travis_wait 20 ./build -b
