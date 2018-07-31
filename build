@@ -21,7 +21,11 @@ YLW=$'\033[01;33m'
 
 # Get Credentials
 
+if [[ "${BUILDING_ON_CI}" = 'y' ]]; then
+printf '\n'
+else
 source ~/.yuvraj.conf
+fi
 
 # Common Declarations
 
