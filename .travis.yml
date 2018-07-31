@@ -18,4 +18,7 @@ before_install:
 
 script:  
   - export BUILDING_ON_CI=y
-  - travis_wait 20 ./build -b
+  - travis_wait 15 ./build -b
+
+after_success:
+  - curl --upload-file *snowy*.zip https://trnasfer.sh
